@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import { LogIn, UserPlus } from 'lucide-react';
+import { LogIn, UserPlus, GraduationCap, Briefcase, Building } from 'lucide-react';
 
 export const Login = () => {
   const location = useLocation();
@@ -11,6 +11,7 @@ export const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState(roleQuery || 'student');
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export const Login = () => {
     e.preventDefault();
     setError('');
     try {
-      const user = await login(email, password);
+      const user = await login(email, password, role);
       if (user.role === 'student') navigate('/student-dashboard');
       if (user.role === 'company') navigate('/company-dashboard');
       if (user.role === 'institute') navigate('/institute-dashboard');
@@ -50,6 +51,30 @@ export const Login = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <div className="text-red-500 text-sm text-center font-medium bg-red-50 py-2 rounded-md">{error}</div>}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Portal Type</label>
+            <div className="grid grid-cols-3 gap-3">
+              <label className={`cursor-pointer flex flex-col items-center p-3 rounded-lg border-2 ${role === 'student' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200 hover:border-indigo-200'}`}>
+                <input type="radio" className="sr-only" name="role" value="student" checked={role === 'student'} onChange={() => setRole('student')} />
+                <GraduationCap className={`w-6 h-6 mb-1 ${role === 'student' ? 'text-indigo-600' : 'text-gray-400'}`} />
+                <span className={`text-xs font-semibold ${role === 'student' ? 'text-indigo-700' : 'text-gray-500'}`}>Student</span>
+              </label>
+
+              <label className={`cursor-pointer flex flex-col items-center p-3 rounded-lg border-2 ${role === 'company' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200 hover:border-indigo-200'}`}>
+                <input type="radio" className="sr-only" name="role" value="company" checked={role === 'company'} onChange={() => setRole('company')} />
+                <Briefcase className={`w-6 h-6 mb-1 ${role === 'company' ? 'text-indigo-600' : 'text-gray-400'}`} />
+                <span className={`text-xs font-semibold ${role === 'company' ? 'text-indigo-700' : 'text-gray-500'}`}>Company</span>
+              </label>
+
+              <label className={`cursor-pointer flex flex-col items-center p-3 rounded-lg border-2 ${role === 'institute' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200 hover:border-indigo-200'}`}>
+                <input type="radio" className="sr-only" name="role" value="institute" checked={role === 'institute'} onChange={() => setRole('institute')} />
+                <Building className={`w-6 h-6 mb-1 ${role === 'institute' ? 'text-indigo-600' : 'text-gray-400'}`} />
+                <span className={`text-xs font-semibold ${role === 'institute' ? 'text-indigo-700' : 'text-gray-500'}`}>Institute</span>
+              </label>
+            </div>
+          </div>
+
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <input
@@ -85,7 +110,7 @@ export const Login = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="mt-6 flex flex-col items-center">
           <p className="text-sm text-gray-600 mb-4">
             Don't have an account?{' '}

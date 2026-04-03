@@ -39,7 +39,7 @@ export const Register = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <div className="text-red-500 text-sm text-center font-medium bg-red-50 py-2 rounded-md">{error}</div>}
-          
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Full Name / Company Name</label>
@@ -47,24 +47,24 @@ export const Register = () => {
                 required
                 type="text"
                 className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="John Doe"
+                placeholder="Full-Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <input
                 required
                 type="email"
                 className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="you@example.com"
+                placeholder="you@gmail.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <input
@@ -85,13 +85,13 @@ export const Register = () => {
                   <GraduationCap className={`w-6 h-6 mb-1 ${formData.role === 'student' ? 'text-indigo-600' : 'text-gray-400'}`} />
                   <span className={`text-xs font-semibold ${formData.role === 'student' ? 'text-indigo-700' : 'text-gray-500'}`}>Student</span>
                 </label>
-                
+
                 <label className={`cursor-pointer flex flex-col items-center p-3 rounded-lg border-2 ${formData.role === 'company' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200 hover:border-indigo-200'}`}>
                   <input type="radio" className="sr-only" name="role" value="company" checked={formData.role === 'company'} onChange={() => setFormData({ ...formData, role: 'company' })} />
                   <Briefcase className={`w-6 h-6 mb-1 ${formData.role === 'company' ? 'text-indigo-600' : 'text-gray-400'}`} />
                   <span className={`text-xs font-semibold ${formData.role === 'company' ? 'text-indigo-700' : 'text-gray-500'}`}>Company</span>
                 </label>
-                
+
                 <label className={`cursor-pointer flex flex-col items-center p-3 rounded-lg border-2 ${formData.role === 'institute' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200 hover:border-indigo-200'}`}>
                   <input type="radio" className="sr-only" name="role" value="institute" checked={formData.role === 'institute'} onChange={() => setFormData({ ...formData, role: 'institute' })} />
                   <Building className={`w-6 h-6 mb-1 ${formData.role === 'institute' ? 'text-indigo-600' : 'text-gray-400'}`} />
@@ -111,7 +111,7 @@ export const Register = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="mt-6 flex flex-col items-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}

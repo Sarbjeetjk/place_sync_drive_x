@@ -1,0 +1,7 @@
+STUDENTS:
+Alice Frontend -> alice@example.com
+Bob Backend -> bob@example.com
+Charlie Fullstack -> charlie@example.com
+David Data -> david@example.com
+Eve Mobile -> eve@example.com
+sarbjeet -> sarbjeet@gmail.com

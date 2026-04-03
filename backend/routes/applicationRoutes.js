@@ -60,12 +60,33 @@ router.get('/:jobId', protect, authorize('company'), async (req, res) => {
   }
 });
 
+// @route PUT /api/applications/:appId/status
+// @desc Update application status manually (company)
+router.put('/:appId/status', protect, authorize('company'), async (req, res) => {
+  try {
+    const { status } = req.body;
+    const application = await Application.findById(req.params.appId).populate('jobId');
+    if (!application) return res.status(404).json({ message: 'Not found' });
+    if (application.jobId.companyId.toString() !== req.user.id) return res.status(403).json({ message: 'Unauthorized' });
+
+    application.status = status;
+    await application.save();
+    res.json(application);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // @route GET /api/applications/student/me
 // @desc Get my applications
 router.get('/student/me', protect, authorize('student'), async (req, res) => {
   try {
     const applications = await Application.find({ studentId: req.user.id })
-      .populate('jobId', 'title companyId');
+      .populate({
+        path: 'jobId',
+        select: 'title companyId',
+        populate: { path: 'companyId', select: 'name' }
+      });
     res.json(applications);
   } catch (error) {
     res.status(500).json({ message: error.message });

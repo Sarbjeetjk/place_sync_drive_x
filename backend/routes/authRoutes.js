@@ -43,14 +43,21 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// @route POST /api/auth/login
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     const user = await User.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    if (user.role !== role) {
+      return res.status(401).json({ message: `No ${role} account found for this email.` });
+    }
+
+    if (await bcrypt.compare(password, user.password)) {
       res.json({
         _id: user._id,
         name: user.name,

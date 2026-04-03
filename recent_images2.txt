@@ -1,0 +1,5 @@
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\vite.svg - 2026-04-01T18:24:45.678Z
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\react.svg - 2026-04-01T18:24:45.649Z
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\public\icons.svg - 2026-04-01T18:24:45.611Z
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\public\favicon.svg - 2026-04-01T18:24:45.570Z
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\hero.png - 2026-04-01T18:24:45.156Z

@@ -1,0 +1,5 @@
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\vite.svg
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\react.svg
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\public\icons.svg
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\public\favicon.svg
+d:\for_coding\hacthoan\PlaceSync-DriveX\frontend\src\assets\hero.png
